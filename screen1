@@ -1,0 +1,46 @@
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class Main
+    {
+        public static void main(String[] args)
+        {
+            //ПРИСЛАТЬ СКРИНШОТ КОДА И КОНСОЛИ В ТЕЛЕГРАМ-ЧАТ С ХЭШ-ТЭГОМ #ilovejava
+            //1. Нужно, чтобы число можно было ввести с клавиатуры в консоли
+            int moneyAmount = 0;
+            boolean canBuyAnything =false;
+            System.out.println("введите сумму напитка: ");
+            Scanner scn= new Scanner (System.in);
+            moneyAmount= scn.nextInt();
+            int[] drinkPrices = {20, 80, 150, 40,50};
+            String[] drinkNames = {"воду", "эспрессо", "капучино", "молоко","tea"};
+
+            //2. Дописать проверку canBuyAnything
+            for(int i = 0; i < drinkNames.length; i = i + 1)
+            {
+                if(drinkPrices[i] <= moneyAmount) {
+                    System.out.println("Вы можете купить " + drinkNames[i]);
+                canBuyAnything= true;
+                }
+            }
+            if(canBuyAnything==false) {
+                System.out.println("недостаточно средств для покупки напитка");
+            }
+            //3. Нужно сделать так, чтобы дата выводилась в формате: 20191205_214218
+            SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd_HHmmss");
+            System.out.println(format.format(new Date()));
+
+
+//4. Написать код получения скриншота экрана, который распечатает размеры экрана
+            try{
+            Robot screen = new Robot();
+            BufferedImage image = new Robot().createScreenCapture (new Rectangle(Toolkit.getDefaultToolkit().getScreenSize())); //code here
+            System.out.println(image.getWidth() + "x" + image.getHeight());
+
+        } catch (AWTException e){}
+    }
+
+}
